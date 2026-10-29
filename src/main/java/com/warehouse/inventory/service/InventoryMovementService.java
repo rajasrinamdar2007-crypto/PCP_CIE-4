@@ -7,6 +7,7 @@ import com.warehouse.inventory.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class InventoryMovementService {
@@ -18,6 +19,14 @@ public class InventoryMovementService {
                                     ProductRepository productRepository) {
         this.movementRepository = movementRepository;
         this.productRepository = productRepository;
+    }
+
+    public List<InventoryMovement> getAllMovements() {
+        return movementRepository.findAll();
+    }
+
+    public List<InventoryMovement> getMovementsByProductId(Long productId) {
+        return movementRepository.findByProductId(productId);
     }
 
     @Transactional
